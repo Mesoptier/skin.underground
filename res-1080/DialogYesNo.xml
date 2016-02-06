@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+  <controls>
+    <control type="label" id="1"></control>
+    <control type="textbox" id="9"></control>
+
+    <!-- Yes button -->
+    <control type="button" id="11">
+      <onup>10</onup>
+      <ondown>10</ondown>
+    </control>
+
+    <!-- No button -->
+    <control type="button" id="10">
+      <onup>11</onup>
+      <ondown>11</ondown>
+    </control>
+  </controls>
+</window>

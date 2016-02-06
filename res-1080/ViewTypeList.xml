@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+  <include name="ViewType_List">
+    <param name="Id" />
+    <param name="Visible" />
+
+    <definition>
+      <control type="group">
+        <width>100%</width>
+        <height>100%</height>
+        <visible>Control.IsVisible($PARAM[Id])</visible>
+
+        <!-- DEBUG -->
+        <control type="label">
+          <label>ID: $PARAM[Id] / $PARAM[Content] $PARAM[ParentContent] $INFO[Window(Home).Property(PreviousContent)]</label>
+          <font>Common_ItemTitle_Uppercase</font>
+          <textcolor>Text_Primary</textcolor>
+        </control>
+
+        <include name="Animation_WindowContent">
+          <param name="OpenType" value="Visible" />
+          <param name="OpenDelay" value="100" />
+          <param name="OpenBackwards" value="$PARAM[OpenBackwards]" />
+          <param name="CloseType" value="Hidden" />
+          <param name="CloseBackwards" value="false" />
+        </include>
+
+        <!-- Title -->
+        <control type="group">
+          <top>100</top>
+          <left>120</left>
+
+          <include name="Common_WindowTitle">
+            <param name="Title" value="$VAR[ViewType_WindowTitle]" />
+            <param name="Detail" value="$VAR[ViewType_WindowTitle_Detail]" />
+          </include>
+        </control>
+
+        <!-- Details -->
+        <control type="group">
+          <top>176</top>
+          <left>120</left>
+          <width>482</width>
+          <height>724</height>
+
+          <!-- Poster -->
+          <control type="group">
+            <visible>Container.Content(Movies) | Container.Content(TvShows) | Container.Content(Seasons)</visible>
+
+            <control type="image">
+              <fadetime>AnimationTime_ImageFade</fadetime>
+              <texture diffuse="diffuse-poster-large.png">$INFO[ListItem.Art(poster)]</texture>
+            </control>
+          </control>
+
+          <!-- Episode -->
+          <!-- TODO: add more info, maybe wider? -->
+          <control type="group">
+            <visible>Container.Content(Episodes)</visible>
+
+            <control type="image">
+              <height>270</height>
+
+              <fadetime>AnimationTime_ImageFade</fadetime>
+              <texture diffuse="diffuse-poster-large.png">$INFO[ListItem.Art(thumb)]</texture>
+            </control>
+          </control>
+        </control>
+
+        <!-- List -->
+        <control type="list" id="$PARAM[Id]">
+          <top>164</top>
+          <right>108</right>
+          <width>1198</width>
+          <height>748</height>
+
+          <include>Animation_ScrollVertical</include>
+
+          <viewtype label="List">list</viewtype>
+          <visible>$PARAM[Visible]</visible>
+
+          <include name="ViewType_List_Layout">
+            <param name="Condition" value="Container.Content(Movies)" />
+            <param name="DetailLeft" value="$INFO[ListItem.Year]" />
+            <param name="DetailLeft_Width" value="120" />
+            <param name="Title" value="$INFO[ListItem.Title]" />
+          </include>
+
+          <include name="ViewType_List_Layout">
+            <param name="Condition" value="Container.Content(TvShows)" />
+            <param name="DetailLeft" value="$INFO[ListItem.Year]" />
+            <param name="DetailLeft_Width" value="120" />
+            <param name="Title" value="$INFO[ListItem.Title]" />
+          </include>
+
+          <include name="ViewType_List_Layout">
+            <param name="Condition" value="Container.Content(Seasons)" />
+            <param name="DetailLeft" value="" />
+            <param name="DetailLeft_Width" value="30" />
+            <param name="Title" value="$VAR[ListItem_Season_Title]" />
+          </include>
+
+          <include name="ViewType_List_Layout">
+            <param name="Condition" value="Container.Content(Episodes)" />
+            <param name="DetailLeft" value="$VAR[ListItem_SeasonEpisode]" />
+            <param name="DetailLeft_Width" value="120" />
+            <param name="Title" value="$INFO[ListItem.Title]" />
+          </include>
+        </control>
+      </control>
+    </definition>
+  </include>
+
+  <include name="ViewType_List_Layout">
+    <param name="Condition" default="" />
+    <param name="Title" default="" />
+    <param name="DetailLeft" default="" />
+    <param name="DetailLeft_Width" default="0" />
+    <param name="DetailRight" default="" />
+    <param name="DetailRight_Width" default="0" />
+
+    <definition>
+      <itemlayout width="1198" height="92" condition="$PARAM[Condition]">
+        <control type="group">
+          <depth>0</depth>
+
+          <include name="ViewType_List_Item">
+            <param name="Title" value="$PARAM[Title]" />
+            <param name="DetailLeft" value="$PARAM[DetailLeft]" />
+            <param name="DetailLeft_Width" value="$PARAM[DetailLeft_Width]" />
+            <param name="DetailRight" value="$PARAM[DetailRight]" />
+            <param name="DetailRight_Width" value="$PARAM[DetailRight_Width]" />
+          </include>
+        </control>
+      </itemlayout>
+
+      <focusedlayout width="1198" height="92" condition="$PARAM[Condition]">
+        <control type="group">
+          <depth>0.5</depth>
+
+          <control type="image">
+            <top>-12</top>
+            <left>-12</left>
+            <right>-12</right>
+            <bottom>-12</bottom>
+
+            <texture border="16">overlay-active.png</texture>
+            <include name="Animation_ActiveOverlay_List"></include>
+          </control>
+
+          <include name="ViewType_List_Item">
+            <param name="Title" value="$PARAM[Title]" />
+            <param name="DetailLeft" value="$PARAM[DetailLeft]" />
+            <param name="DetailLeft_Width" value="$PARAM[DetailLeft_Width]" />
+            <param name="DetailRight" value="$PARAM[DetailRight]" />
+            <param name="DetailRight_Width" value="$PARAM[DetailRight_Width]" />
+          </include>
+        </control>
+      </focusedlayout>
+    </definition>
+  </include>
+
+  <include name="ViewType_List_Item_Movies">
+    <include name="ViewType_List_Item">
+      <param name="DetailLeft" value="$INFO[ListItem.Year]" />
+      <param name="DetailLeft_Width" value="120" />
+    </include>
+  </include>
+
+  <include name="ViewType_List_Item_Episodes">
+    <include name="ViewType_List_Item">
+      <param name="DetailLeft" value="$VAR[ListItem_SeasonEpisode]" />
+      <param name="DetailLeft_Width" value="120" />
+    </include>
+  </include>
+
+  <include name="ViewType_List_Item">
+    <param name="Unwatched" default="StringCompare(ListItem.Overlay, OverlayUnwatched.png)" />
+    <param name="DetailLeft" default="" />
+    <param name="DetailLeft_Width" default="0" />
+    <param name="DetailRight" default="" />
+    <param name="DetailRight_Width" default="0" />
+
+    <definition>
+      <top>12</top>
+      <left>12</left>
+      <width>1174</width>
+      <height>80</height>
+
+      <!-- Unwatched icon -->
+      <control type="image">
+        <width>80</width>
+
+        <texture colordiffuse="Background_Secondary" border="8">back-rounded-h.png</texture>
+        <visible>!$PARAM[Unwatched]</visible>
+      </control>
+      <control type="image">
+        <width>80</width>
+        <height>80</height>
+
+        <texture colordiffuse="Accent" border="8">back-rounded-h.png</texture>
+        <visible>$PARAM[Unwatched]</visible>
+      </control>
+
+      <!-- Main content -->
+      <control type="group">
+        <left>80</left>
+        <right>130</right>
+
+        <control type="image">
+          <texture colordiffuse="Background_Primary">solid.png</texture>
+        </control>
+
+        <control type="label">
+          <top>16</top>
+          <width>$PARAM[DetailLeft_Width]</width>
+
+          <label>$PARAM[DetailLeft]</label>
+          <textcolor>Text_Secondary</textcolor>
+          <font>Common_ItemTitle</font>
+          <align>center</align>
+        </control>
+
+        <control type="group">
+          <left>$PARAM[DetailLeft_Width]</left>
+          <right>$PARAM[DetailRight_Width]</right>
+
+          <control type="label">
+            <top>16</top>
+
+            <label>$PARAM[Title]</label>
+            <textcolor>Text_Primary</textcolor>
+            <font>Common_ItemTitle</font>
+          </control>
+        </control>
+      </control>
+    </definition>
+  </include>
+</includes>

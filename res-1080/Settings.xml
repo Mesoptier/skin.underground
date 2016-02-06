@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+  <defaultcontrol>300</defaultcontrol>
+
+  <controls>
+    <include>Common_Background</include>
+
+    <control type="group" id="1001">
+      <include name="Common_WindowContent">
+        <param name="OpenBackwards" value="false" />
+        <param name="CloseBackwards" value="Window.Next(Home)" />
+      </include>
+
+      <!-- Title -->
+      <control type="group">
+        <top>100</top>
+        <left>120</left>
+
+        <include name="Common_WindowTitle">
+          <param name="Title" value="$LOCALIZE[21417]" />
+        </include>
+      </control>
+
+      <!-- Grid -->
+      <control type="panel" id="300">
+        <top>256</top>
+        <left>108</left>
+        <width>1704</width>
+        <height>568</height>
+
+        <itemlayout width="284" height="284">
+          <control type="group">
+            <include name="Settings_Item"></include>
+          </control>
+        </itemlayout>
+
+        <focusedlayout width="284" height="284">
+          <control type="group">
+            <depth>0.5</depth>
+
+            <control type="image">
+              <top>-12</top>
+              <left>-12</left>
+              <right>-12</right>
+              <bottom>-12</bottom>
+
+              <texture border="16">overlay-active.png</texture>
+              <include name="Animation_ActiveOverlay"></include>
+            </control>
+
+            <include name="Settings_Item"></include>
+          </control>
+        </focusedlayout>
+
+        <content>
+          <item>
+            <label>$LOCALIZE[480]</label>
+            <icon>icon/appearance_120dp.png</icon>
+            <onclick>ActivateWindow(AppearanceSettings)</onclick>
+          </item>
+          <item>
+            <label>$LOCALIZE[444]</label>
+            <icon>icon/video_120dp.png</icon>
+            <onclick>ActivateWindow(VideosSettings)</onclick>
+          </item>
+          <item>
+            <label>$LOCALIZE[2]</label>
+            <icon>icon/music_120dp.png</icon>
+            <onclick>ActivateWindow(MusicSettings)</onclick>
+          </item>
+          <item>
+            <label>$LOCALIZE[1]</label>
+            <icon>icon/pictures_120dp.png</icon>
+            <onclick>ActivateWindow(PicturesSettings)</onclick>
+          </item>
+          <item>
+            <label>$LOCALIZE[40000]</label>
+            <icon>icon/livetv_120dp.png</icon>
+            <onclick>ActivateWindow(PvrSettings)</onclick>
+          </item>
+          <item>
+            <label>$LOCALIZE[8]</label>
+            <icon>icon/weather_120dp.png</icon>
+            <onclick>ActivateWindow(WeatherSettings)</onclick>
+          </item>
+          <item>
+            <label>$LOCALIZE[14036]</label>
+            <icon>icon/services_120dp.png</icon>
+            <onclick>ActivateWindow(ServiceSettings)</onclick>
+          </item>
+          <item>
+            <label>$LOCALIZE[13200]</label>
+            <icon>icon/profiles_120dp.png</icon>
+            <onclick>ActivateWindow(Profiles)</onclick>
+          </item>
+          <item>
+            <label>$LOCALIZE[24001]</label>
+            <icon>icon/addons_120dp.png</icon>
+            <onclick>ActivateWindow(AddonBrowser)</onclick>
+          </item>
+          <item>
+            <label>$LOCALIZE[166]</label>
+            <icon>icon/skin_120dp.png</icon>
+            <onclick>ActivateWindow(SkinSettings)</onclick>
+          </item>
+          <item>
+            <label>$LOCALIZE[13000]</label>
+            <icon>icon/system_120dp.png</icon>
+            <onclick>ActivateWindow(SystemSettings)</onclick>
+          </item>
+          <item>
+            <label>$LOCALIZE[130]</label>
+            <icon>icon/systeminfo_120dp.png</icon>
+            <onclick>ActivateWindow(SystemInfo)</onclick>
+          </item>
+        </content>
+      </control>
+    </control>
+  </controls>
+</window>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+  <include name="Common_Background">
+    <control type="image">
+      <top>0</top>
+      <left>0</left>
+      <width>100%</width>
+      <height>100%</height>
+
+      <texture colordiffuse="Background_Window">solid.png</texture>
+    </control>
+  </include>
+
+  <include name="Common_WindowNotification">
+    <definition>
+      <control type="grouplist">
+
+      </control>
+    </definition>
+  </include>
+
+  <include name="Common_WindowContent">
+    <param name="OpenBackwards" default="false" />
+    <param name="CloseBackwards" default="false" />
+
+    <definition>
+      <width>100%</width>
+      <height>100%</height>
+
+      <include name="Animation_WindowContent">
+        <param name="OpenBackwards" value="$PARAM[OpenBackwards]" />
+        <param name="CloseBackwards" value="$PARAM[CloseBackwards]" />
+      </include>
+    </definition>
+  </include>
+
+  <include name="Common_WindowTitle">
+    <param name="Title" />
+    <param name="Detail" />
+
+    <definition>
+      <control type="grouplist">
+        <top>-24</top>
+        <width>1000</width>
+        <height>88</height>
+
+        <itemgap>30</itemgap>
+        <orientation>horizontal</orientation>
+        <usecontrolcoords>true</usecontrolcoords>
+
+        <control type="label">
+          <width>auto</width>
+          <height>40</height>
+
+          <label>$PARAM[Title]</label>
+          <font>Common_WindowTitle</font>
+          <textcolor>Text_Primary</textcolor>
+        </control>
+
+        <!-- Detail -->
+        <control type="button" id="4001">
+          <top>24</top>
+          <width>auto</width>
+          <height>40</height>
+          <textoffsetx>11</textoffsetx>
+          <textoffsety>2</textoffsety>
+
+          <texturenofocus border="8" colordiffuse="Background_Secondary">back.png</texturenofocus>
+
+          <label>$PARAM[Detail]</label>
+          <font>Common_WindowTitle_Detail</font>
+          <textcolor>Text_Secondary</textcolor>
+
+          <visible>!IsEmpty(Control.GetLabel(4001))</visible>
+        </control>
+      </control>
+    </definition>
+  </include>
+
+</includes>

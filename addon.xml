@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="skin.underground" version="0.1.0" name="Underground" provider-name="Mesoptier">
+  <requires>
+    <import addon="xbmc.gui" version="5.10.0" />
+    <import addon="script.underground.helper" version="0.1.0" />
+  </requires>
+  <extension point="xbmc.gui.skin">
+    <res width="1920" height="1080" folder="res-1080" />
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Summary</summary>
+    <description lang="en">Description</description>
+    <disclaimer lang="en">Disclaimer</disclaimer>
+  </extension>
+</addon>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+  <include name="Animation_WindowContent">
+
+    <param name="OpenType" default="WindowOpen" />
+    <param name="OpenDelay" default="100" />
+    <param name="OpenCondition" default="true" />
+    <param name="OpenBackwards" default="false" />
+    <param name="CloseType" default="WindowClose" />
+    <param name="CloseCondition"  default="true" />
+    <param name="CloseBackwards" default="false" />
+
+    <definition>
+      <!-- WindowOpen forwards -->
+      <animation type="$PARAM[OpenType]" condition="[$PARAM[OpenCondition]] + ![$PARAM[OpenBackwards]]" reversible="false">
+        <effect type="Fade" start="0" end="100" tween="sine" easing="out" time="AnimationTime_WindowOpen" delay="$PARAM[OpenDelay]" />
+        <effect type="Zoom" start="105" end="100" center="auto" tween="cubic" easing="out" time="AnimationTime_WindowOpen" delay="$PARAM[OpenDelay]" />
+      </animation>
+
+      <!-- WindowOpen backwards -->
+      <animation type="$PARAM[OpenType]" condition="[$PARAM[OpenCondition]] + [$PARAM[OpenBackwards]]" reversible="false">
+        <effect type="Fade" start="0" end="100" tween="sine" easing="out" time="AnimationTime_WindowOpen" delay="$PARAM[OpenDelay]" />
+        <effect type="Zoom" start="95" end="100" center="auto" tween="cubic" easing="out" time="AnimationTime_WindowOpen" delay="$PARAM[OpenDelay]" />
+      </animation>
+
+      <!-- WindowClose forwards -->
+      <animation type="$PARAM[CloseType]" condition="$PARAM[CloseCondition] + ![$PARAM[CloseBackwards]]" reversible="false">
+        <effect type="Fade" start="100" end="0" tween="sine" easing="in" time="AnimationTime_WindowClose" />
+        <effect type="Zoom" start="100" end="95" center="auto" tween="cubic" easing="in" time="AnimationTime_WindowClose" />
+      </animation>
+
+      <!-- WindowClose backwards -->
+      <animation type="$PARAM[CloseType]" condition="$PARAM[CloseCondition] + [$PARAM[CloseBackwards]]" reversible="false">
+        <effect type="Fade" start="100" end="0" tween="sine" easing="in" time="AnimationTime_WindowClose" />
+        <effect type="Zoom" start="100" end="105" center="auto" tween="cubic" easing="in" time="AnimationTime_WindowClose" />
+      </animation>
+    </definition>
+  </include>
+
+  <include name="Animation_ActiveOverlay">
+    <param name="FocusType" default="Focus" />
+    <param name="FocusCondition" />
+    <param name="FocusZoom" default="103" />
+    <param name="UnfocusType" default="Unfocus" />
+    <param name="UnfocusCondition" />
+    <param name="UnfocusZoom" default="98" />
+
+    <definition>
+      <animation type="$PARAM[FocusType]" condition="$PARAM[FocusCondition]" reversible="false">
+        <effect type="Fade" start="0" end="100" tween="sine" easing="out" time="AnimationTime_Fast" />
+        <effect type="Zoom" start="$PARAM[FocusZoom]" end="100" center="auto" tween="quadratic" easing="out" time="150" />
+      </animation>
+      <animation type="$PARAM[UnfocusType]" condition="$PARAM[UnfocusCondition]" reversible="false">
+        <effect type="Fade" start="100" end="0" tween="sine" easing="out" time="AnimationTime_Fast" />
+        <effect type="Zoom" start="100" end="$PARAM[UnfocusZoom]" center="auto" tween="quadratic" easing="in" time="AnimationTime_Fast" />
+      </animation>
+    </definition>
+  </include>
+
+  <include name="Animation_ActiveOverlay_Poster">
+    <include name="Animation_ActiveOverlay">
+      <param name="FocusType" value="$PARAM[FocusType]" />
+      <param name="FocusCondition" value="$PARAM[FocusCondition]" />
+      <param name="FocusZoom" value="103,102" />
+      <param name="UnfocusType" value="$PARAM[UnfocusType]" />
+      <param name="UnfocusCondition" value="$PARAM[UnfocusCondition]" />
+      <param name="UnfocusZoom" value="98,99" />
+    </include>
+  </include>
+
+  <include name="Animation_ActiveOverlay_List">
+    <include name="Animation_ActiveOverlay">
+      <param name="FocusType" value="$PARAM[FocusType]" />
+      <param name="FocusCondition" value="$PARAM[FocusCondition]" />
+      <param name="FocusZoom" value="101,104" />
+      <param name="UnfocusType" value="$PARAM[UnfocusType]" />
+      <param name="UnfocusCondition" value="$PARAM[UnfocusCondition]" />
+      <param name="UnfocusZoom" value="98,99" />
+    </include>
+  </include>
+
+  <include name="Animation_ScrollHorizontal">
+    <scrolltime tween="cubic" easing="out">300</scrolltime>
+  </include>
+
+  <include name="Animation_ScrollVertical">
+    <scrolltime tween="cubic" easing="out">300</scrolltime>
+  </include>
+
+</includes>

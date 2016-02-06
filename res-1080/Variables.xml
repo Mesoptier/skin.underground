@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+  <!-- Animation -->
+  <constant name="AnimationTime_Fast">60</constant>
+  <constant name="AnimationTime_ImageFade">200</constant>
+  <constant name="AnimationTime_WindowOpen">300</constant>
+  <constant name="AnimationTime_WindowClose">0</constant>
+
+  <!-- View types -->
+  <variable name="ViewType_WindowTitle">
+    <value condition="Container.Content(TvShows)">$LOCALIZE[20343]</value>
+    <value condition="Container.Content(Movies)">$LOCALIZE[20342]</value>
+    <value condition="Container.Content(Seasons) | Container.Content(Episodes)">$INFO[ListItem.TvShowTitle]</value>
+    <value>DEFAULT</value>
+  </variable>
+
+  <variable name="ViewType_WindowTitle_Detail">
+    <value condition="Container.Content(TvShows) | Container.Content(Movies)">$INFO[Container.NumItems,,$LOCALIZE[40100]]</value>
+    <value condition="Container.Content(Episodes) + StringCompare(Container.FolderName,$LOCALIZE[20366])">$LOCALIZE[40101]</value>
+    <value condition="Container.Content(Episodes)">$INFO[Container.FolderName]</value>
+  </variable>
+
+  <variable name="ListItem_Season_Title">
+    <value condition="StringCompare(ListItem.Title,$LOCALIZE[20366])">$LOCALIZE[40101]</value>
+    <value>$INFO[ListItem.Title]</value>
+  </variable>
+
+  <variable name="ListItem_Season">
+    <value>$INFO[ListItem.Season]</value>
+  </variable>
+
+  <variable name="ListItem_Episode">
+    <value condition="ListItem.Property(IsSpecial)">$INFO[ListItem.Episode]</value>
+    <value condition="IntegerGreaterThan(ListItem.Episode, 9)">$INFO[ListItem.Episode]</value>
+    <value>0$INFO[ListItem.Episode]</value>
+  </variable>
+
+  <variable name="ListItem_SeasonEpisode">
+    <value condition="ListItem.Property(IsSpecial)">$VAR[ListItem_Episode]</value>
+    <value>$VAR[ListItem_Season]x$VAR[ListItem_Episode]</value>
+  </variable>
+
+</includes>

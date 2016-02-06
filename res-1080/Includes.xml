@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+  <include file="Defaults.xml" />
+  <include file="Variables.xml" />
+
+  <include file="ViewTypeList.xml" />
+  <include file="ViewTypePosterGrid.xml" />
+
+  <include file="IncludesAnimation.xml" />
+  <include file="IncludesCommon.xml" />
+  <include file="IncludesHome.xml" />
+  <include file="IncludesSettings.xml" />
+</includes>

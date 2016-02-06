@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+  <include name="ViewType_PosterGrid">
+    <param name="Id" />
+    <param name="Visible" />
+    <param name="OpenBackwards" value="false" />
+
+    <definition>
+      <control type="group">
+        <width>100%</width>
+        <height>100%</height>
+        <visible>Control.IsVisible($PARAM[Id])</visible>
+
+        <!-- DEBUG -->
+        <control type="label">
+          <label>ID: $PARAM[Id]</label>
+          <font>Common_ItemTitle_Uppercase</font>
+          <textcolor>Text_Primary</textcolor>
+        </control>
+
+        <include name="Animation_WindowContent">
+          <param name="OpenType" value="Visible" />
+          <param name="OpenDelay" value="200" />
+          <param name="OpenBackwards" value="$PARAM[OpenBackwards]" />
+          <param name="CloseType" value="Hidden" />
+          <param name="CloseBackwards" value="false" />
+        </include>
+
+        <!-- Title -->
+        <control type="group">
+          <top>100</top>
+          <left>120</left>
+
+          <include name="Common_WindowTitle">
+            <param name="Title" value="$VAR[ViewType_WindowTitle]" />
+            <param name="Detail" value="$VAR[ViewType_WindowTitle_Detail]" />
+          </include>
+        </control>
+
+        <control type="panel" id="$PARAM[Id]">
+          <top>164</top>
+          <width>100%</width>
+          <height>828</height>
+
+          <include>Animation_ScrollHorizontal</include>
+
+          <orientation>horizontal</orientation>
+          <preloaditems>2</preloaditems>
+
+          <viewtype label="Poster grid">icon</viewtype>
+          <visible>$PARAM[Visible]</visible>
+
+          <itemlayout width="284" height="414">
+            <control type="group">
+              <depth>0</depth>
+
+              <include name="ViewType_PosterGrid_Item"></include>
+            </control>
+          </itemlayout>
+
+          <focusedlayout width="284" height="414">
+            <control type="group">
+              <depth>0.5</depth>
+
+              <control type="image">
+                <top>-12</top>
+                <left>-12</left>
+                <right>-12</right>
+                <bottom>-12</bottom>
+
+                <texture border="16">overlay-active.png</texture>
+                <include name="Animation_ActiveOverlay_Poster"></include>
+              </control>
+
+              <include name="ViewType_PosterGrid_Item"></include>
+            </control>
+          </focusedlayout>
+        </control>
+      </control>
+    </definition>
+  </include>
+
+  <include name="ViewType_PosterGrid_Item">
+    <param name="Unwatched" default="StringCompare(ListItem.Overlay, OverlayUnwatched.png)" />
+
+    <definition>
+      <top>12</top>
+      <left>120</left>
+      <width>260</width>
+      <height>390</height>
+
+      <!-- Poster -->
+      <control type="image">
+        <width>260</width>
+        <height>390</height>
+
+        <texture diffuse="diffuse-poster.png" background="true">$INFO[ListItem.Art(poster)]</texture>
+        <fadetime>0</fadetime>
+
+        <visible>!$PARAM[Unwatched]</visible>
+      </control>
+
+      <control type="image">
+        <width>260</width>
+        <height>390</height>
+
+        <texture diffuse="diffuse-poster-badge.png" background="true">$INFO[ListItem.Art(poster)]</texture>
+        <fadetime>0</fadetime>
+
+        <visible>$PARAM[Unwatched]</visible>
+      </control>
+
+      <!-- Badge -->
+      <control type="image">
+        <right>0</right>
+        <width>128</width>
+        <height>128</height>
+
+        <texture colordiffuse="Accent">badge-poster.png</texture>
+
+        <visible>$PARAM[Unwatched]</visible>
+      </control>
+    </definition>
+  </include>
+</includes>

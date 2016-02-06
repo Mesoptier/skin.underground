@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+  <include name="Home_PrimaryMenu_Item">
+    <param name="Label" />
+    <param name="Active" />
+    <param name="Enabled" />
+
+    <definition>
+      <!-- Group with width=0 allows these two buttons to float over one another -->
+      <control type="group">
+        <visible>$PARAM[Enabled]</visible>
+
+        <width>0</width>
+
+        <!-- Active overlay -->
+        <control type="button">
+          <width>auto</width>
+          <height>114</height>
+          <textoffsetx>42</textoffsetx>
+          <textoffsety>17</textoffsety>
+
+          <label>$PARAM[Label]</label>
+          <font>Home_PrimaryMenu</font>
+          <textcolor>Hidden</textcolor>
+
+          <texturefocus border="16">overlay-active.png</texturefocus>
+          <texturenofocus border="16">overlay-active.png</texturenofocus>
+
+          <visible>$PARAM[Active]</visible>
+
+          <include name="Animation_ActiveOverlay">
+            <param name="FocusType" value="Visible" />
+            <param name="UnfocusType" value="Hidden" />
+          </include>
+        </control>
+      </control>
+
+      <!-- Text -->
+      <control type="button">
+        <visible>$PARAM[Enabled]</visible>
+
+        <left>-8</left>
+        <width>auto</width>
+        <height>114</height>
+        <textoffsetx>42</textoffsetx>
+        <textoffsety>15</textoffsety>
+
+        <label>$PARAM[Label]</label>
+        <font>Home_PrimaryMenu</font>
+        <textcolor>Text_Primary</textcolor>
+        <focusedcolor>Text_Primary</focusedcolor>
+
+        <animation type="Conditional" condition="![$PARAM[Active]]">
+          <effect type="Fade" start="100" end="80" time="AnimationTime_Fast" />
+        </animation>
+      </control>
+    </definition>
+  </include>
+
+  <include name="Home_ActionsMenu_Item">
+    <param name="Icon" />
+    <param name="Active" />
+    <param name="Enabled" />
+
+    <definition>
+      <control type="group">
+        <width>104</width>
+        <height>104</height>
+
+        <!-- Active overlay -->
+        <control type="image">
+          <width>100%</width>
+          <height>100%</height>
+
+          <texture border="16">overlay-active.png</texture>
+
+          <visible>$PARAM[Active]</visible>
+
+          <include name="Animation_ActiveOverlay">
+            <param name="FocusType" value="Visible" />
+            <param name="UnfocusType" value="Hidden" />
+          </include>
+        </control>
+
+        <control type="image">
+          <width>100%</width>
+          <height>100%</height>
+
+          <texture border="16" colordiffuse="Background_Secondary">back-padded.png</texture>
+        </control>
+
+        <!-- Icon -->
+        <control type="image">
+          <centertop>50%</centertop>
+          <centerleft>50%</centerleft>
+          <width>48</width>
+          <height>48</height>
+
+          <texture>$PARAM[Icon]</texture>
+        </control>
+      </control>
+    </definition>
+  </include>
+
+</includes>

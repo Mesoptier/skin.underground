@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+  <defaultcontrol>300</defaultcontrol>
+
+  <controls>
+    <include>Common_Background</include>
+
+    <control type="group" id="1001">
+      <include name="Common_WindowContent">
+        <param name="OpenBackwards" value="!Window.Previous(Startup)" />
+        <param name="CloseBackwards" value="false" /> 
+      </include>
+
+      <!-- Primary menu -->
+      <control type="list" id="300">
+        <ondown>400</ondown>
+        <orientation>horizontal</orientation>
+
+        <itemlayout />
+        <focusedlayout />
+
+        <content>
+          <item>
+            <label>$LOCALIZE[20342]</label>
+            <onclick>ActivateWindow(Videos, MovieTitles, return)</onclick>
+            <visible>true</visible>
+          </item>
+          <item>
+            <label>$LOCALIZE[20343]</label>
+            <onclick>ActivateWindow(Videos, TvShowTitles, return)</onclick>
+            <visible>true</visible>
+          </item>
+          <item>
+            <label>Music</label>
+            <onclick>ActivateWindow(Home)</onclick>
+            <visible>false</visible>
+          </item>
+          <item>
+            <label>Games</label>
+            <onclick>ActivateWindow(Home)</onclick>
+            <visible>false</visible>
+          </item>
+        </content>
+      </control>
+
+      <control type="grouplist">
+        <top>483</top>
+        <width>100%</width>
+        <height>114</height>
+        <align>center</align>
+
+        <itemgap>8</itemgap>
+        <orientation>horizontal</orientation>
+        <usecontrolcoords>true</usecontrolcoords>
+
+        <include name="Home_PrimaryMenu_Item">
+          <param name="Label" value="$INFO[Container(300).ListItemPosition(0).Label]" />
+          <param name="Active" value="Control.HasFocus(300) + Container(300).Position(0)" />
+          <param name="Enabled" value="IntegerGreaterThan(Container(300).NumItems, 0)" />
+        </include>
+
+        <include name="Home_PrimaryMenu_Item">
+          <param name="Label" value="$INFO[Container(300).ListItemPosition(1).Label]" />
+          <param name="Active" value="Control.HasFocus(300) + Container(300).Position(1)" />
+          <param name="Enabled" value="IntegerGreaterThan(Container(300).NumItems, 1)" />
+        </include>
+
+        <include name="Home_PrimaryMenu_Item">
+          <param name="Label" value="$INFO[Container(300).ListItemPosition(2).Label]" />
+          <param name="Active" value="Control.HasFocus(300) + Container(300).Position(2)" />
+          <param name="Enabled" value="IntegerGreaterThan(Container(300).NumItems, 2)" />
+        </include>
+
+        <include name="Home_PrimaryMenu_Item">
+          <param name="Label" value="$INFO[Container(300).ListItemPosition(3).Label]" />
+          <param name="Active" value="Control.HasFocus(300) + Container(300).Position(3)" />
+          <param name="Enabled" value="IntegerGreaterThan(Container(300).NumItems, 3)" />
+        </include>
+      </control>
+
+      <!-- Actions menu -->
+      <control type="list" id="400">
+        <onup>300</onup>
+        <orientation>horizontal</orientation>
+
+        <itemlayout />
+        <focusedlayout />
+
+        <content>
+          <item>
+            <label>$LOCALIZE[10004]</label>
+            <icon>icon/settings_48dp.png</icon>
+            <onclick>ActivateWindow(Settings)</onclick>
+            <visible>true</visible>
+          </item>
+          <item>
+            <label>$LOCALIZE[13200]</label>
+            <icon>icon/profiles_48dp.png</icon>
+            <onclick>ActivateWindow(Profiles)</onclick>
+            <visible>true</visible>
+          </item>
+          <item>
+            <label>$LOCALIZE[33060]</label>
+            <icon>icon/power_48dp.png</icon>
+            <onclick>ActivateWindow(Home)</onclick>
+            <visible>true</visible>
+          </item>
+        </content>
+      </control>
+
+      <control type="grouplist">
+        <bottom>88</bottom>
+        <right>108</right>
+        <width>1000</width>
+        <height>104</height>
+        <align>right</align>
+
+        <itemgap>0</itemgap>
+        <orientation>horizontal</orientation>
+
+        <include name="Home_ActionsMenu_Item">
+          <param name="Icon" value="$INFO[Container(400).ListItemPosition(0).Icon]" />
+          <param name="Active" value="Control.HasFocus(400) + Container(400).Position(0)" />
+          <param name="Enabled" value="IntegerGreaterThan(Container(400).NumItems, 0)" />
+        </include>
+
+        <include name="Home_ActionsMenu_Item">
+          <param name="Icon" value="$INFO[Container(400).ListItemPosition(1).Icon]" />
+          <param name="Active" value="Control.HasFocus(400) + Container(400).Position(1)" />
+          <param name="Enabled" value="IntegerGreaterThan(Container(400).NumItems, 1)" />
+        </include>
+
+        <include name="Home_ActionsMenu_Item">
+          <param name="Icon" value="$INFO[Container(400).ListItemPosition(2).Icon]" />
+          <param name="Active" value="Control.HasFocus(400) + Container(400).Position(2)" />
+          <param name="Enabled" value="IntegerGreaterThan(Container(400).NumItems, 2)" />
+        </include>
+      </control>
+    </control>
+  </controls>
+</window>

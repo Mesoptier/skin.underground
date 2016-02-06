@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fonts>
+  <fontset id="Default">
+    <!-- Debug -->
+    <font>
+      <name>font13</name>
+      <filename>Poppins-Regular.ttf</filename>
+      <size>30</size>
+    </font>
+
+    <font>
+      <name>Common_WindowTitle</name>
+      <filename>Poppins-SemiBold.ttf</filename>
+      <size>57</size>
+      <style>uppercase</style>
+    </font>
+
+    <font>
+      <name>Common_WindowTitle_Detail</name>
+      <filename>Poppins-SemiBold.ttf</filename>
+      <size>24</size>
+      <style>uppercase</style>
+    </font>
+
+
+    <font>
+      <name>Common_ItemTitle</name>
+      <filename>Poppins-SemiBold.ttf</filename>
+      <size>28</size>
+    </font>
+    <font>
+      <name>Common_ItemTitle_Uppercase</name>
+      <filename>Poppins-SemiBold.ttf</filename>
+      <size>28</size>
+      <style>uppercase</style>
+    </font>
+
+    <font>
+      <name>Home_PrimaryMenu</name>
+      <filename>Poppins-SemiBold.ttf</filename>
+      <size>57</size>
+      <style>uppercase</style>
+    </font>
+  </fontset>
+</fonts>
