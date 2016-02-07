@@ -19,7 +19,6 @@
 
         <include name="Animation_WindowContent">
           <param name="OpenType" value="Visible" />
-          <param name="OpenDelay" value="100" />
           <param name="OpenBackwards" value="$PARAM[OpenBackwards]" />
           <param name="CloseType" value="Hidden" />
           <param name="CloseBackwards" value="false" />
@@ -81,30 +80,34 @@
 
           <include name="ViewType_List_Layout">
             <param name="Condition" value="Container.Content(Movies)" />
+            <param name="Title" value="$INFO[ListItem.Title]" />
             <param name="DetailLeft" value="$INFO[ListItem.Year]" />
             <param name="DetailLeft_Width" value="120" />
-            <param name="Title" value="$INFO[ListItem.Title]" />
           </include>
 
           <include name="ViewType_List_Layout">
             <param name="Condition" value="Container.Content(TvShows)" />
+            <param name="Title" value="$INFO[ListItem.Title]" />
+            <param name="Unwatched_IsText" value="true" />
+            <param name="Unwatched_Text" value="$INFO[ListItem.Property(UnWatchedEpisodes)]" />
             <param name="DetailLeft" value="$INFO[ListItem.Year]" />
             <param name="DetailLeft_Width" value="120" />
-            <param name="Title" value="$INFO[ListItem.Title]" />
           </include>
 
           <include name="ViewType_List_Layout">
             <param name="Condition" value="Container.Content(Seasons)" />
+            <param name="Title" value="$VAR[ListItem_Season_Title]" />
+            <param name="Unwatched_IsText" value="true" />
+            <param name="Unwatched_Text" value="$INFO[ListItem.Property(UnWatchedEpisodes)]" />
             <param name="DetailLeft" value="" />
             <param name="DetailLeft_Width" value="30" />
-            <param name="Title" value="$VAR[ListItem_Season_Title]" />
           </include>
 
           <include name="ViewType_List_Layout">
             <param name="Condition" value="Container.Content(Episodes)" />
+            <param name="Title" value="$INFO[ListItem.Title]" />
             <param name="DetailLeft" value="$VAR[ListItem_SeasonEpisode]" />
             <param name="DetailLeft_Width" value="120" />
-            <param name="Title" value="$INFO[ListItem.Title]" />
           </include>
         </control>
       </control>
@@ -114,6 +117,10 @@
   <include name="ViewType_List_Layout">
     <param name="Condition" default="" />
     <param name="Title" default="" />
+    <param name="Unwatched" default="StringCompare(ListItem.Overlay, OverlayUnwatched.png)" />
+    <param name="Unwatched_Width" default="80" />
+    <param name="Unwatched_IsText" default="false" />
+    <param name="Unwatched_Text" default="" />
     <param name="DetailLeft" default="" />
     <param name="DetailLeft_Width" default="0" />
     <param name="DetailRight" default="" />
@@ -126,6 +133,10 @@
 
           <include name="ViewType_List_Item">
             <param name="Title" value="$PARAM[Title]" />
+            <param name="Unwatched" value="$PARAM[Unwatched]" />
+            <param name="Unwatched_Width" value="$PARAM[Unwatched_Width]" />
+            <param name="Unwatched_IsText" value="$PARAM[Unwatched_IsText]" />
+            <param name="Unwatched_Text" value="$PARAM[Unwatched_Text]" />
             <param name="DetailLeft" value="$PARAM[DetailLeft]" />
             <param name="DetailLeft_Width" value="$PARAM[DetailLeft_Width]" />
             <param name="DetailRight" value="$PARAM[DetailRight]" />
@@ -150,6 +161,10 @@
 
           <include name="ViewType_List_Item">
             <param name="Title" value="$PARAM[Title]" />
+            <param name="Unwatched" value="$PARAM[Unwatched]" />
+            <param name="Unwatched_Width" value="$PARAM[Unwatched_Width]" />
+            <param name="Unwatched_IsText" value="$PARAM[Unwatched_IsText]" />
+            <param name="Unwatched_Text" value="$PARAM[Unwatched_Text]" />
             <param name="DetailLeft" value="$PARAM[DetailLeft]" />
             <param name="DetailLeft_Width" value="$PARAM[DetailLeft_Width]" />
             <param name="DetailRight" value="$PARAM[DetailRight]" />
@@ -175,7 +190,11 @@
   </include>
 
   <include name="ViewType_List_Item">
+    <param name="Title" default="" />
     <param name="Unwatched" default="StringCompare(ListItem.Overlay, OverlayUnwatched.png)" />
+    <param name="Unwatched_Width" default="80" />
+    <param name="Unwatched_IsText" default="false" />
+    <param name="Unwatched_Text" default="" />
     <param name="DetailLeft" default="" />
     <param name="DetailLeft_Width" default="0" />
     <param name="DetailRight" default="" />
@@ -188,23 +207,40 @@
       <height>80</height>
 
       <!-- Unwatched icon -->
-      <control type="image">
-        <width>80</width>
+      <control type="group">
+        <width>$PARAM[Unwatched_Width]</width>
 
-        <texture colordiffuse="Background_Secondary" border="8">back-rounded-h.png</texture>
-        <visible>!$PARAM[Unwatched]</visible>
-      </control>
-      <control type="image">
-        <width>80</width>
-        <height>80</height>
+        <control type="image">
+          <texture colordiffuse="Background_Secondary" border="8">back-rounded-h.png</texture>
+        </control>
 
-        <texture colordiffuse="Accent" border="8">back-rounded-h.png</texture>
-        <visible>$PARAM[Unwatched]</visible>
+        <control type="image">
+          <centertop>50%</centertop>
+          <centerleft>50%</centerleft>
+          <width>24</width>
+          <height>24</height>
+
+          <texture colordiffuse="Text_Secondary">icon/unwatched_24dp.png</texture>
+
+          <visible>$PARAM[Unwatched] + !$PARAM[Unwatched_IsText]</visible>
+        </control>
+
+        <control type="label">
+          <top>16</top>
+          <width>$PARAM[Unwatched_Width]</width>
+
+          <label>$PARAM[Unwatched_Text]</label>
+          <textcolor>Text_Secondary</textcolor>
+          <font>Common_ItemTitle</font>
+          <align>center</align>
+
+          <visible>$PARAM[Unwatched] + $PARAM[Unwatched_IsText]</visible>
+        </control>
       </control>
 
       <!-- Main content -->
       <control type="group">
-        <left>80</left>
+        <left>$PARAM[Unwatched_Width]</left>
         <right>130</right>
 
         <control type="image">
