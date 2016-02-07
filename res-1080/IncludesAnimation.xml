@@ -25,16 +25,16 @@
       </animation>
 
       <!-- WindowClose forwards -->
-      <animation type="$PARAM[CloseType]" condition="$PARAM[CloseCondition] + ![$PARAM[CloseBackwards]]" reversible="false">
+      <!-- <animation type="$PARAM[CloseType]" condition="$PARAM[CloseCondition] + ![$PARAM[CloseBackwards]]" reversible="false">
         <effect type="Fade" start="100" end="0" tween="sine" easing="in" time="AnimationTime_WindowClose" />
         <effect type="Zoom" start="100" end="95" center="auto" tween="cubic" easing="in" time="AnimationTime_WindowClose" />
-      </animation>
+      </animation> -->
 
       <!-- WindowClose backwards -->
-      <animation type="$PARAM[CloseType]" condition="$PARAM[CloseCondition] + [$PARAM[CloseBackwards]]" reversible="false">
+      <!-- <animation type="$PARAM[CloseType]" condition="$PARAM[CloseCondition] + [$PARAM[CloseBackwards]]" reversible="false">
         <effect type="Fade" start="100" end="0" tween="sine" easing="in" time="AnimationTime_WindowClose" />
         <effect type="Zoom" start="100" end="105" center="auto" tween="cubic" easing="in" time="AnimationTime_WindowClose" />
-      </animation>
+      </animation> -->
     </definition>
   </include>
 
