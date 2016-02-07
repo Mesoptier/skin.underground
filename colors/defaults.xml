@@ -8,6 +8,8 @@
   <color name="Background_Window">FF1A1C1F</color>
   <color name="Background_Primary">FF373942</color>
   <color name="Background_Secondary">FF30323A</color>
+  <color name="Background_Primary_Playing">FF3C4C40</color>
+  <color name="Background_Secondary_Playing">FF303F34</color>
 
   <!-- Text -->
   <color name="Text_Primary">FFFFFFFF</color>

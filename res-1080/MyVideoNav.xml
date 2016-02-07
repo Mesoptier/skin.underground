@@ -17,25 +17,21 @@
         <param name="Id" value="500" />
         <param name="Content" value="Movies" />
         <param name="Visible" value="Container.Content(Movies)" />
-        <param name="OpenBackwards" value="false" />
       </include>
       <include name="ViewType_List">
         <param name="Id" value="501" />
         <param name="Content" value="TvShows" />
         <param name="Visible" value="Container.Content(TvShows) | Container.Content(Seasons) | Container.Content(Episodes)" />
-        <param name="OpenBackwards" value="StringCompare(Window(Home).Property(PreviousContent),seasons) | StringCompare(Window(Home).Property(PreviousContent),episodes)" />
       </include>
       <include name="ViewType_List">
         <param name="Id" value="502" />
         <param name="Content" value="Seasons" />
         <param name="Visible" value="Container.Content(TvShows) | Container.Content(Seasons) | Container.Content(Episodes)" />
-        <param name="OpenBackwards" value="StringCompare(Window(Home).Property(PreviousContent),episodes)" />
       </include>
       <include name="ViewType_List">
         <param name="Id" value="503" />
         <param name="Content" value="Episodes" />
         <param name="Visible" value="Container.Content(TvShows) | Container.Content(Seasons) | Container.Content(Episodes)" />
-        <param name="OpenBackwards" value="false" />
       </include>
 
       <include name="ViewType_PosterGrid">

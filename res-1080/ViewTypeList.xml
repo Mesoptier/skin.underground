@@ -3,6 +3,7 @@
   <include name="ViewType_List">
     <param name="Id" />
     <param name="Visible" />
+    <param name="OpenBackwards" default="[Container.Content(TvShows) + [StringCompare(Window(Home).Property(PreviousContent),seasons) | StringCompare(Window(Home).Property(PreviousContent),episodes)]] | [Container.Content(Seasons) + StringCompare(Window(Home).Property(PreviousContent),episodes)]" />
 
     <definition>
       <control type="group">
@@ -37,33 +38,55 @@
           </include>
         </control>
 
-        <!-- Details -->
+        <!-- Poster -->
         <control type="group">
           <top>176</top>
           <left>120</left>
           <width>482</width>
           <height>724</height>
 
-          <!-- Poster -->
-          <control type="group">
-            <visible>Container.Content(Movies) | Container.Content(TvShows) | Container.Content(Seasons)</visible>
+          <visible>Container.Content(Movies) | Container.Content(TvShows) | Container.Content(Seasons)</visible>
 
-            <control type="image">
-              <fadetime>AnimationTime_ImageFade</fadetime>
-              <texture diffuse="diffuse-poster-large.png">$INFO[ListItem.Art(poster)]</texture>
-            </control>
+          <control type="image">
+            <fadetime>AnimationTime_ImageFade</fadetime>
+            <texture diffuse="diffuse-poster-large.png">$INFO[ListItem.Art(poster)]</texture>
+          </control>
+        </control>
+
+
+        <!-- Episode -->
+        <!-- TODO: add more info, maybe wider? -->
+        <control type="group">
+          <top>176</top>
+          <left>120</left>
+          <width>592</width>
+          <height>724</height>
+
+          <visible>Container.Content(Episodes)</visible>
+
+          <control type="image">
+            <height>333</height>
+
+            <fadetime>AnimationTime_ImageFade</fadetime>
+            <texture>$INFO[ListItem.Art(thumb)]</texture>
           </control>
 
-          <!-- Episode -->
-          <!-- TODO: add more info, maybe wider? -->
           <control type="group">
-            <visible>Container.Content(Episodes)</visible>
+            <top>333</top>
 
             <control type="image">
-              <height>270</height>
+              <texture colordiffuse="Background_Secondary" border="8" flipy="true">back-rounded-v.png</texture>
+            </control>
 
-              <fadetime>AnimationTime_ImageFade</fadetime>
-              <texture diffuse="diffuse-poster-large.png">$INFO[ListItem.Art(thumb)]</texture>
+            <control type="textbox">
+              <top>16</top>
+              <bottom>24</bottom>
+              <left>24</left>
+              <right>24</right>
+
+              <label>$INFO[ListItem.Plot]</label>
+              <font>Common_ItemDescription_Large</font>
+              <textcolor>Text_Secondary</textcolor>
             </control>
           </control>
         </control>
@@ -111,14 +134,18 @@
 
           <include name="ViewType_List_Layout">
             <param name="Condition" value="Container.Content(Episodes)" />
-            <param name="Width" value="1000" />
-            <param name="OffsetLeft" value="198" />
+            <param name="Width" value="1088" />
+            <param name="OffsetLeft" value="110" />
             <param name="Title" value="$INFO[ListItem.Title]" />
             <param name="DetailLeft" value="$VAR[ListItem_SeasonEpisode]" />
             <param name="DetailLeft_Width" value="120" />
             <param name="DetailRight" value="$VAR[ListItem_Duration]" />
             <param name="DetailRight_Width" value="120" />
           </include>
+
+
+          <itemlayout width="92" height="92"></itemlayout>
+          <focusedlayout width="92" height="92"></focusedlayout>
         </control>
       </control>
     </definition>
@@ -238,6 +265,8 @@
     <param name="Rating_IsEmpty" />
     <param name="Rating_Width" />
 
+    <param name="IsPlaying" default="ListItem.IsPlaying" />
+
     <definition>
       <top>12</top>
       <left>12</left>
@@ -251,6 +280,12 @@
 
         <control type="image">
           <texture colordiffuse="Background_Secondary" border="8">back-rounded-h.png</texture>
+          <visible>!$PARAM[IsPlaying]</visible>
+        </control>
+
+        <control type="image">
+          <texture colordiffuse="Background_Secondary_Playing" border="8">back-rounded-h.png</texture>
+          <visible>$PARAM[IsPlaying]</visible>
         </control>
 
         <control type="image">
@@ -261,7 +296,11 @@
 
           <texture colordiffuse="Text_Secondary">icon/unwatched_24dp.png</texture>
 
-          <visible>$PARAM[Unwatched] + !$PARAM[Unwatched_IsText] + !$PARAM[Unwatched_HasProgress]</visible>
+          <visible>$PARAM[Unwatched] + !$PARAM[Unwatched_IsText] + !$PARAM[Unwatched_HasProgress] + !$PARAM[IsPlaying]</visible>
+
+          <animation type="Visible">
+            <effect type="Fade" start="0" end="100" time="1000" />
+          </animation>
         </control>
 
         <control type="image">
@@ -272,7 +311,7 @@
 
           <texture colordiffuse="Text_Secondary">icon/unwatched_progress_24dp.png</texture>
 
-          <visible>$PARAM[Unwatched] + !$PARAM[Unwatched_IsText] + $PARAM[Unwatched_HasProgress]</visible>
+          <visible>$PARAM[Unwatched] + !$PARAM[Unwatched_IsText] + $PARAM[Unwatched_HasProgress] + !$PARAM[IsPlaying]</visible>
         </control>
 
         <control type="label">
@@ -281,10 +320,22 @@
 
           <label>$PARAM[Unwatched_Text]</label>
           <textcolor>Text_Secondary</textcolor>
+          <selectedcolor>Text_Secondary</selectedcolor>
           <font>Common_ItemTitle</font>
           <align>center</align>
 
-          <visible>$PARAM[Unwatched] + $PARAM[Unwatched_IsText]</visible>
+          <visible>$PARAM[Unwatched] + $PARAM[Unwatched_IsText] + !$PARAM[IsPlaying]</visible>
+        </control>
+
+        <control type="image">
+          <centertop>50%</centertop>
+          <centerleft>50%</centerleft>
+          <width>24</width>
+          <height>24</height>
+
+          <texture colordiffuse="Text_Secondary">icon/playing_24dp.png</texture>
+
+          <visible>$PARAM[IsPlaying]</visible>
         </control>
       </control>
 
@@ -295,12 +346,22 @@
 
         <control type="image">
           <texture colordiffuse="Background_Primary">solid.png</texture>
-          <visible>$PARAM[Rating_Enabled]</visible>
+          <visible>$PARAM[Rating_Enabled] + ![$PARAM[IsPlaying]]</visible>
         </control>
 
         <control type="image">
           <texture colordiffuse="Background_Primary" border="8" flipx="true">back-rounded-h.png</texture>
-          <visible>!$PARAM[Rating_Enabled]</visible>
+          <visible>!$PARAM[Rating_Enabled] + ![$PARAM[IsPlaying]]</visible>
+        </control>
+
+        <control type="image">
+          <texture colordiffuse="Background_Primary_Playing">solid.png</texture>
+          <visible>$PARAM[Rating_Enabled] + [$PARAM[IsPlaying]]</visible>
+        </control>
+
+        <control type="image">
+          <texture colordiffuse="Background_Primary_Playing" border="8" flipx="true">back-rounded-h.png</texture>
+          <visible>!$PARAM[Rating_Enabled] + [$PARAM[IsPlaying]]</visible>
         </control>
 
         <control type="label">
@@ -309,6 +370,7 @@
 
           <label>$PARAM[DetailLeft]</label>
           <textcolor>Text_Secondary</textcolor>
+          <selectedcolor>Text_Secondary</selectedcolor>
           <font>Common_ItemTitle</font>
           <align>center</align>
         </control>
@@ -323,6 +385,7 @@
 
             <label>$PARAM[Title]</label>
             <textcolor>Text_Primary</textcolor>
+            <selectedcolor>Text_Primary</selectedcolor>
             <font>Common_ItemTitle</font>
           </control>
         </control>
@@ -334,6 +397,7 @@
 
           <label>$PARAM[DetailRight]</label>
           <textcolor>Text_Secondary</textcolor>
+          <selectedcolor>Text_Secondary</selectedcolor>
           <font>Common_ItemTitle</font>
           <align>right</align>
         </control>
@@ -348,6 +412,12 @@
 
         <control type="image">
           <texture colordiffuse="Background_Secondary" border="8" flipx="true">back-rounded-h.png</texture>
+          <visible>!$PARAM[IsPlaying]</visible>
+        </control>
+
+        <control type="image">
+          <texture colordiffuse="Background_Secondary_Playing" border="8" flipx="true">back-rounded-h.png</texture>
+          <visible>$PARAM[IsPlaying]</visible>
         </control>
 
         <control type="image">
@@ -367,6 +437,7 @@
 
           <label>$PARAM[Rating]</label>
           <textcolor>Text_Secondary</textcolor>
+          <selectedcolor>Text_Secondary</selectedcolor>
           <font>Common_ItemTitle</font>
           <align>center</align>
         </control>
