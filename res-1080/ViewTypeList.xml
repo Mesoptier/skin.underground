@@ -85,6 +85,8 @@
             <param name="Title" value="$INFO[ListItem.Title]" />
             <param name="DetailLeft" value="$INFO[ListItem.Year]" />
             <param name="DetailLeft_Width" value="120" />
+            <param name="DetailRight" value="$VAR[ListItem_Duration]" />
+            <param name="DetailRight_Width" value="120" />
           </include>
 
           <include name="ViewType_List_Layout">
