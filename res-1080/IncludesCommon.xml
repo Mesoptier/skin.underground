@@ -2,6 +2,10 @@
 <includes>
 
   <include name="Common_Background">
+    <control type="videowindow">
+      <visible>Player.HasVideo</visible>
+    </control>
+
     <control type="image">
       <top>0</top>
       <left>0</left>
@@ -9,6 +13,10 @@
       <height>100%</height>
 
       <texture colordiffuse="Background_Window">solid.png</texture>
+
+      <animation type="Conditional" condition="Player.HasVideo">
+        <effect type="Fade" start="100" end="90" />
+      </animation>
     </control>
   </include>
 
