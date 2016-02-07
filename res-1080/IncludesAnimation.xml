@@ -4,7 +4,7 @@
   <include name="Animation_WindowContent">
 
     <param name="OpenType" default="WindowOpen" />
-    <param name="OpenDelay" default="100" />
+    <param name="OpenDelay" default="AnimationDelay_WindowOpen" />
     <param name="OpenCondition" default="true" />
     <param name="OpenBackwards" default="false" />
     <param name="CloseType" default="WindowClose" />
@@ -14,13 +14,13 @@
     <definition>
       <!-- WindowOpen forwards -->
       <animation type="$PARAM[OpenType]" condition="[$PARAM[OpenCondition]] + ![$PARAM[OpenBackwards]]" reversible="false">
-        <effect type="Fade" start="0" end="100" tween="sine" easing="out" time="AnimationTime_WindowOpen" delay="$PARAM[OpenDelay]" />
+        <effect type="Fade" start="0" end="100" tween="circle" easing="out" time="AnimationTime_WindowOpen" delay="$PARAM[OpenDelay]" />
         <effect type="Zoom" start="105" end="100" center="auto" tween="cubic" easing="out" time="AnimationTime_WindowOpen" delay="$PARAM[OpenDelay]" />
       </animation>
 
       <!-- WindowOpen backwards -->
       <animation type="$PARAM[OpenType]" condition="[$PARAM[OpenCondition]] + [$PARAM[OpenBackwards]]" reversible="false">
-        <effect type="Fade" start="0" end="100" tween="sine" easing="out" time="AnimationTime_WindowOpen" delay="$PARAM[OpenDelay]" />
+        <effect type="Fade" start="0" end="100" tween="circle" easing="out" time="AnimationTime_WindowOpen" delay="$PARAM[OpenDelay]" />
         <effect type="Zoom" start="95" end="100" center="auto" tween="cubic" easing="out" time="AnimationTime_WindowOpen" delay="$PARAM[OpenDelay]" />
       </animation>
 
