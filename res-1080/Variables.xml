@@ -42,4 +42,8 @@
     <value>$VAR[ListItem_Season]x$VAR[ListItem_Episode]</value>
   </variable>
 
+  <variable name="ListItem_Duration">
+    <value>$INFO[ListItem.Duration,,$LOCALIZE[40102]]</value>
+  </variable>
+
 </includes>

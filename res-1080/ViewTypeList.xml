@@ -15,6 +15,8 @@
           <label>ID: $PARAM[Id] / $PARAM[Content] $PARAM[ParentContent] $INFO[Window(Home).Property(PreviousContent)]</label>
           <font>Common_ItemTitle_Uppercase</font>
           <textcolor>Text_Primary</textcolor>
+
+          <visible>Skin.HasSetting(DebugInfo)</visible>
         </control>
 
         <include name="Animation_WindowContent">
@@ -101,13 +103,19 @@
             <param name="Unwatched_Text" value="$INFO[ListItem.Property(UnWatchedEpisodes)]" />
             <param name="DetailLeft" value="" />
             <param name="DetailLeft_Width" value="30" />
+            <param name="Rating_Enabled" value="false" />
+            <param name="Rating_Width" value="0" />
           </include>
 
           <include name="ViewType_List_Layout">
             <param name="Condition" value="Container.Content(Episodes)" />
+            <param name="Width" value="1000" />
+            <param name="OffsetLeft" value="198" />
             <param name="Title" value="$INFO[ListItem.Title]" />
             <param name="DetailLeft" value="$VAR[ListItem_SeasonEpisode]" />
             <param name="DetailLeft_Width" value="120" />
+            <param name="DetailRight" value="$VAR[ListItem_Duration]" />
+            <param name="DetailRight_Width" value="120" />
           </include>
         </control>
       </control>
@@ -116,8 +124,13 @@
 
   <include name="ViewType_List_Layout">
     <param name="Condition" default="" />
+    <param name="Width" default="1198" />
+    <param name="OffsetLeft" default="0" />
+
+    <!-- Passed through -->
     <param name="Title" default="" />
     <param name="Unwatched" default="StringCompare(ListItem.Overlay, OverlayUnwatched.png)" />
+    <param name="Unwatched_HasProgress" default="IntegerGreaterThan(ListItem.PercentPlayed, 0)" />
     <param name="Unwatched_Width" default="80" />
     <param name="Unwatched_IsText" default="false" />
     <param name="Unwatched_Text" default="" />
@@ -125,15 +138,24 @@
     <param name="DetailLeft_Width" default="0" />
     <param name="DetailRight" default="" />
     <param name="DetailRight_Width" default="0" />
+    <param name="Rating" default="$INFO[ListItem.Rating]" />
+    <param name="Rating_Enabled" default="true" />
+    <param name="Rating_IsEmpty" default="IsEmpty(ListItem.Rating)" />
+    <param name="Rating_Width" default="130" />
 
     <definition>
-      <itemlayout width="1198" height="92" condition="$PARAM[Condition]">
+      <animation type="Conditional" condition="$PARAM[Condition]">
+        <effect type="Slide" end="$PARAM[OffsetLeft],0" />
+      </animation>
+
+      <itemlayout width="$PARAM[Width]" height="92" condition="$PARAM[Condition]">
         <control type="group">
           <depth>0</depth>
 
           <include name="ViewType_List_Item">
             <param name="Title" value="$PARAM[Title]" />
             <param name="Unwatched" value="$PARAM[Unwatched]" />
+            <param name="Unwatched_HasProgress" value="$PARAM[Unwatched_HasProgress]" />
             <param name="Unwatched_Width" value="$PARAM[Unwatched_Width]" />
             <param name="Unwatched_IsText" value="$PARAM[Unwatched_IsText]" />
             <param name="Unwatched_Text" value="$PARAM[Unwatched_Text]" />
@@ -141,11 +163,15 @@
             <param name="DetailLeft_Width" value="$PARAM[DetailLeft_Width]" />
             <param name="DetailRight" value="$PARAM[DetailRight]" />
             <param name="DetailRight_Width" value="$PARAM[DetailRight_Width]" />
+            <param name="Rating" value="$PARAM[Rating]" />
+            <param name="Rating_Enabled" value="$PARAM[Rating_Enabled]" />
+            <param name="Rating_IsEmpty" value="$PARAM[Rating_IsEmpty]" />
+            <param name="Rating_Width" value="$PARAM[Rating_Width]" />
           </include>
         </control>
       </itemlayout>
 
-      <focusedlayout width="1198" height="92" condition="$PARAM[Condition]">
+      <focusedlayout width="$PARAM[Width]" height="92" condition="$PARAM[Condition]">
         <control type="group">
           <depth>0.5</depth>
 
@@ -162,6 +188,7 @@
           <include name="ViewType_List_Item">
             <param name="Title" value="$PARAM[Title]" />
             <param name="Unwatched" value="$PARAM[Unwatched]" />
+            <param name="Unwatched_HasProgress" value="$PARAM[Unwatched_HasProgress]" />
             <param name="Unwatched_Width" value="$PARAM[Unwatched_Width]" />
             <param name="Unwatched_IsText" value="$PARAM[Unwatched_IsText]" />
             <param name="Unwatched_Text" value="$PARAM[Unwatched_Text]" />
@@ -169,6 +196,10 @@
             <param name="DetailLeft_Width" value="$PARAM[DetailLeft_Width]" />
             <param name="DetailRight" value="$PARAM[DetailRight]" />
             <param name="DetailRight_Width" value="$PARAM[DetailRight_Width]" />
+            <param name="Rating" value="$PARAM[Rating]" />
+            <param name="Rating_Enabled" value="$PARAM[Rating_Enabled]" />
+            <param name="Rating_IsEmpty" value="$PARAM[Rating_IsEmpty]" />
+            <param name="Rating_Width" value="$PARAM[Rating_Width]" />
           </include>
         </control>
       </focusedlayout>
@@ -190,20 +221,26 @@
   </include>
 
   <include name="ViewType_List_Item">
-    <param name="Title" default="" />
-    <param name="Unwatched" default="StringCompare(ListItem.Overlay, OverlayUnwatched.png)" />
-    <param name="Unwatched_Width" default="80" />
-    <param name="Unwatched_IsText" default="false" />
-    <param name="Unwatched_Text" default="" />
-    <param name="DetailLeft" default="" />
-    <param name="DetailLeft_Width" default="0" />
-    <param name="DetailRight" default="" />
-    <param name="DetailRight_Width" default="0" />
+    <param name="Title" />
+    <param name="Unwatched" />
+    <param name="Unwatched_HasProgress" />
+    <param name="Unwatched_Width" />
+    <param name="Unwatched_IsText" />
+    <param name="Unwatched_Text" />
+    <param name="DetailLeft" />
+    <param name="DetailLeft_Width" />
+    <param name="DetailRight" />
+    <param name="DetailRight_Width" />
+    <param name="Rating" />
+    <param name="Rating_Enabled" />
+    <param name="Rating_IsEmpty" />
+    <param name="Rating_Width" />
 
     <definition>
       <top>12</top>
       <left>12</left>
-      <width>1174</width>
+      <right>12</right>
+      <!-- <width>1174</width> -->
       <height>80</height>
 
       <!-- Unwatched icon -->
@@ -222,11 +259,22 @@
 
           <texture colordiffuse="Text_Secondary">icon/unwatched_24dp.png</texture>
 
-          <visible>$PARAM[Unwatched] + !$PARAM[Unwatched_IsText]</visible>
+          <visible>$PARAM[Unwatched] + !$PARAM[Unwatched_IsText] + !$PARAM[Unwatched_HasProgress]</visible>
+        </control>
+
+        <control type="image">
+          <centertop>50%</centertop>
+          <centerleft>50%</centerleft>
+          <width>24</width>
+          <height>24</height>
+
+          <texture colordiffuse="Text_Secondary">icon/unwatched_progress_24dp.png</texture>
+
+          <visible>$PARAM[Unwatched] + !$PARAM[Unwatched_IsText] + $PARAM[Unwatched_HasProgress]</visible>
         </control>
 
         <control type="label">
-          <top>16</top>
+          <top>18</top>
           <width>$PARAM[Unwatched_Width]</width>
 
           <label>$PARAM[Unwatched_Text]</label>
@@ -241,14 +289,20 @@
       <!-- Main content -->
       <control type="group">
         <left>$PARAM[Unwatched_Width]</left>
-        <right>130</right>
+        <right>$PARAM[Rating_Width]</right>
 
         <control type="image">
           <texture colordiffuse="Background_Primary">solid.png</texture>
+          <visible>$PARAM[Rating_Enabled]</visible>
+        </control>
+
+        <control type="image">
+          <texture colordiffuse="Background_Primary" border="8" flipx="true">back-rounded-h.png</texture>
+          <visible>!$PARAM[Rating_Enabled]</visible>
         </control>
 
         <control type="label">
-          <top>16</top>
+          <top>18</top>
           <width>$PARAM[DetailLeft_Width]</width>
 
           <label>$PARAM[DetailLeft]</label>
@@ -262,12 +316,57 @@
           <right>$PARAM[DetailRight_Width]</right>
 
           <control type="label">
-            <top>16</top>
+            <top>18</top>
+            <right>30</right>
 
             <label>$PARAM[Title]</label>
             <textcolor>Text_Primary</textcolor>
             <font>Common_ItemTitle</font>
           </control>
+        </control>
+
+        <control type="label">
+          <top>18</top>
+          <right>30</right>
+          <width>$PARAM[DetailRight_Width]</width>
+
+          <label>$PARAM[DetailRight]</label>
+          <textcolor>Text_Secondary</textcolor>
+          <font>Common_ItemTitle</font>
+          <align>right</align>
+        </control>
+      </control>
+
+      <!-- Rating -->
+      <control type="group">
+        <right>0</right>
+        <width>$PARAM[Rating_Width]</width>
+
+        <visible>$PARAM[Rating_Enabled]</visible>
+
+        <control type="image">
+          <texture colordiffuse="Background_Secondary" border="8" flipx="true">back-rounded-h.png</texture>
+        </control>
+
+        <control type="image">
+          <top>28</top>
+          <left>26</left>
+          <width>24</width>
+          <height>24</height>
+
+          <texture colordiffuse="Text_Secondary">icon/rating_24dp.png</texture>
+
+          <visible>!$PARAM[Rating_IsEmpty]</visible>
+        </control>
+
+        <control type="label">
+          <top>18</top>
+          <left>26</left>
+
+          <label>$PARAM[Rating]</label>
+          <textcolor>Text_Secondary</textcolor>
+          <font>Common_ItemTitle</font>
+          <align>center</align>
         </control>
       </control>
     </definition>

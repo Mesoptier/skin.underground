@@ -16,6 +16,8 @@
           <label>ID: $PARAM[Id]</label>
           <font>Common_ItemTitle_Uppercase</font>
           <textcolor>Text_Primary</textcolor>
+
+    			<visible>Skin.HasSetting(DebugInfo)</visible>
         </control>
 
         <include name="Animation_WindowContent">
@@ -116,7 +118,7 @@
         <width>128</width>
         <height>128</height>
 
-        <texture colordiffuse="Accent">badge-poster.png</texture>
+        <texture colordiffuse="Background_Secondary">badge-poster.png</texture>
 
         <visible>$PARAM[Unwatched]</visible>
       </control>

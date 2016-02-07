@@ -16,14 +16,22 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: Settings.xml
 msgctxt "#40000"
 msgid "Live TV"
 msgstr ""
 
+#: Variables.xml
 msgctxt "#40100"
 msgid " items"
 msgstr ""
 
+#: Variables.xml
 msgctxt "#40101"
 msgid "All seasons"
+msgstr ""
+
+#: Variables.xml
+msgctxt "#40102"
+msgid " min"
 msgstr ""
