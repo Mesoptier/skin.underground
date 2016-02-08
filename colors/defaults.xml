@@ -12,6 +12,10 @@
   <color name="Background_Primary_Playing">FF3C4C40</color>
   <color name="Background_Secondary_Playing">FF303F34</color>
 
+  <color name="Scrollbar_Background">FF151618</color>
+  <color name="Scrollbar_Bar">FF30323A</color>
+  <color name="Scrollbar_Bar_Focus">FF00AEFF</color>
+
   <!-- Text -->
   <color name="Text_Primary">FFFFFFFF</color>
   <color name="Text_Secondary">BFFFFFFF</color>

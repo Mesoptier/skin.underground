@@ -3,6 +3,7 @@
   <include name="ViewType_List">
     <param name="Id" />
     <param name="Visible" />
+    <param name="ScrollbarId" default="30" />
 
     <definition>
       <include name="Debug">
@@ -84,6 +85,17 @@
           </control>
         </control>
 
+        <control type="scrollbar" id="$PARAM[ScrollbarId]">
+          <top>176</top>
+          <left>96r</left>
+          <height>724</height>
+
+          <onleft>$PARAM[Id]</onleft>
+          <onright>$PARAM[Id]</onright>
+
+          <showonepage>false</showonepage>
+        </control>
+
         <!-- List -->
         <control type="list" id="$PARAM[Id]">
           <top>164</top>
@@ -92,6 +104,10 @@
           <height>748</height>
 
           <include>Animation_ScrollVertical</include>
+
+          <onleft>$PARAM[ScrollbarId]</onleft>
+          <onright>$PARAM[ScrollbarId]</onright>
+          <pagecontrol>$PARAM[ScrollbarId]</pagecontrol>
 
           <viewtype label="List">list</viewtype>
           <visible>$PARAM[Visible]</visible>

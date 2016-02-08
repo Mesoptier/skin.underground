@@ -5,4 +5,13 @@
     <pulseonselect>false</pulseonselect>
   </default>
 
+  <default type="scrollbar">
+    <width>10</width>
+    <height>10</height>
+
+    <texturesliderbackground colordiffuse="Scrollbar_Background" border="5">back.png</texturesliderbackground>
+    <texturesliderbar colordiffuse="Scrollbar_Bar" border="5">back.png</texturesliderbar>
+    <texturesliderbarfocus colordiffuse="Scrollbar_Bar_Focus" border="5">back.png</texturesliderbarfocus>
+  </default>
+
 </includes>

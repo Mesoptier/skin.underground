@@ -15,7 +15,7 @@
       </include>
 
       <include name="ViewType_PosterGrid">
-        <param name="Id" value="511" />
+        <param name="Id" value="501" />
         <param name="Visible" value="Container.Content(Movies) | Container.Content(TvShows)" />
       </include>
     </control>

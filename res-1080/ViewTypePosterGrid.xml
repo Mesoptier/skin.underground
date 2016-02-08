@@ -3,7 +3,7 @@
   <include name="ViewType_PosterGrid">
     <param name="Id" />
     <param name="Visible" />
-    <param name="OpenBackwards" value="false" />
+    <param name="ScrollbarId" default="30" />
 
     <definition>
       <include name="Debug">
@@ -30,6 +30,18 @@
           </include>
         </control>
 
+        <control type="scrollbar" id="$PARAM[ScrollbarId]">
+          <left>120</left>
+          <bottom>66</bottom>
+          <width>1680</width>
+
+          <onup>$PARAM[Id]</onup>
+          <ondown>$PARAM[Id]</ondown>
+
+          <orientation>horizontal</orientation>
+          <showonepage>false</showonepage>
+        </control>
+
         <control type="panel" id="$PARAM[Id]">
           <top>164</top>
           <width>100%</width>
@@ -39,6 +51,10 @@
 
           <orientation>horizontal</orientation>
           <preloaditems>2</preloaditems>
+
+          <onup>$PARAM[ScrollbarId]</onup>
+          <ondown>$PARAM[ScrollbarId]</ondown>
+          <pagecontrol>$PARAM[ScrollbarId]</pagecontrol>
 
           <viewtype label="Poster grid">icon</viewtype>
           <visible>$PARAM[Visible]</visible>
