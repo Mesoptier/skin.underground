@@ -1,46 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
   <defaultcontrol always="true">500</defaultcontrol>
-  <views>500,501,502,503,510,511</views>
+  <views>500,501</views>
 
   <controls>
     <include>Common_Background</include>
 
     <control type="group" id="1001">
-      <include name="Common_WindowContent">
-        <param name="OpenBackwards" value="false" />
-        <param name="CloseBackwards" value="Window.Next(Home)" />
-      </include>
-
       <!-- Views -->
       <include name="ViewType_List">
         <param name="Id" value="500" />
         <param name="Content" value="Movies" />
-        <param name="Visible" value="Container.Content(Movies)" />
-      </include>
-      <include name="ViewType_List">
-        <param name="Id" value="501" />
-        <param name="Content" value="TvShows" />
-        <param name="Visible" value="Container.Content(TvShows) | Container.Content(Seasons) | Container.Content(Episodes)" />
-      </include>
-      <include name="ViewType_List">
-        <param name="Id" value="502" />
-        <param name="Content" value="Seasons" />
-        <param name="Visible" value="Container.Content(TvShows) | Container.Content(Seasons) | Container.Content(Episodes)" />
-      </include>
-      <include name="ViewType_List">
-        <param name="Id" value="503" />
-        <param name="Content" value="Episodes" />
-        <param name="Visible" value="Container.Content(TvShows) | Container.Content(Seasons) | Container.Content(Episodes)" />
+        <param name="Visible" value="Container.Content(Movies) | Container.Content(TvShows) | Container.Content(Seasons) | Container.Content(Episodes)" />
       </include>
 
       <include name="ViewType_PosterGrid">
-        <param name="Id" value="510" />
-        <param name="Visible" value="Container.Content(Movies)" />
-      </include>
-      <include name="ViewType_PosterGrid">
         <param name="Id" value="511" />
-        <param name="Visible" value="Container.Content(TvShows)" />
+        <param name="Visible" value="Container.Content(Movies) | Container.Content(TvShows)" />
       </include>
     </control>
   </controls>

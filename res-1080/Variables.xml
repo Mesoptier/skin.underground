@@ -3,10 +3,10 @@
 
   <!-- Animation -->
   <constant name="AnimationTime_Fast">60</constant>
-  <constant name="AnimationTime_ImageFade">200</constant>
+  <constant name="AnimationTime_ImageFade">100</constant>
   <constant name="AnimationTime_WindowOpen">400</constant>
   <constant name="AnimationTime_WindowClose">0</constant>
-  <constant name="AnimationDelay_WindowOpen">120</constant>
+  <constant name="AnimationDelay_WindowOpen">0</constant>
 
   <!-- View types -->
   <variable name="ViewType_WindowTitle">

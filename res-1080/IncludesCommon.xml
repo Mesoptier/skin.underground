@@ -83,4 +83,19 @@
     </definition>
   </include>
 
+  <include name="Debug">
+    <param name="Label" />
+    <param name="Visible" default="true" />
+
+    <definition>
+      <control type="label">
+        <label>$INFO[Window(Home).Property(Changed)] $INFO[Window(Home).Property(ChangedBackwards)] [CR]$PARAM[Label]</label>
+        <font>Common_ItemTitle</font>
+        <textcolor>Text_Primary</textcolor>
+
+        <visible>Skin.HasSetting(DebugInfo) + [$PARAM[Visible]]</visible>
+      </control>
+    </definition>
+  </include>
+
 </includes>

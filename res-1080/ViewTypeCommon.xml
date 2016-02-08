@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+  <include name="ViewType_Animation_WindowContent">
+    <param name="Id" />
+    <param name="OpenBackwards" default="SubString(Window(Home).Property(ChangedBackwards),True)" />
+
+    <definition>
+      <visible>Control.IsVisible($PARAM[Id]) + [SubString(Window(Home).Property(Changed),True) + StringCompare(Window(Home).Property(FolderPath),Container.FolderPath)]</visible>
+
+      <include name="Animation_WindowContent">
+        <param name="OpenType" value="Visible" />
+        <param name="OpenBackwards" value="$PARAM[OpenBackwards]" />
+        <param name="CloseType" value="Hidden" />
+        <param name="CloseBackwards" value="false" />
+      </include>
+    </definition>
+  </include>
+
+</includes>

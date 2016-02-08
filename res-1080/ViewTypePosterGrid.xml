@@ -6,26 +6,17 @@
     <param name="OpenBackwards" value="false" />
 
     <definition>
+      <include name="Debug">
+        <param name="Label" value="ID: $PARAM[Id] [CR]$INFO[Window(Home).Property(FolderPath)] / $INFO[Window(Home).Property(PreviousFolderPath)] [CR]$INFO[Window(Home).Property(Content)] / $INFO[Window(Home).Property(PreviousContent)]" />
+        <param name="Visible" value="Control.IsVisible($PARAM[Id])" />
+      </include>
+
       <control type="group">
         <width>100%</width>
         <height>100%</height>
-        <visible>Control.IsVisible($PARAM[Id])</visible>
 
-        <!-- DEBUG -->
-        <control type="label">
-          <label>ID: $PARAM[Id]</label>
-          <font>Common_ItemTitle_Uppercase</font>
-          <textcolor>Text_Primary</textcolor>
-
-    			<visible>Skin.HasSetting(DebugInfo)</visible>
-        </control>
-
-        <include name="Animation_WindowContent">
-          <param name="OpenType" value="Visible" />
-          <param name="OpenDelay" value="200" />
-          <param name="OpenBackwards" value="$PARAM[OpenBackwards]" />
-          <param name="CloseType" value="Hidden" />
-          <param name="CloseBackwards" value="false" />
+        <include name="ViewType_Animation_WindowContent">
+          <param name="Id" value="$PARAM[Id]" />
         </include>
 
         <!-- Title -->

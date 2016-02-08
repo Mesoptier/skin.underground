@@ -3,9 +3,11 @@
   <include file="Defaults.xml" />
   <include file="Variables.xml" />
 
+  <include file="ViewTypeCommon.xml" />
   <include file="ViewTypeList.xml" />
   <include file="ViewTypePosterGrid.xml" />
 
+  <include file="IncludesSetup.xml" />
   <include file="IncludesAnimation.xml" />
   <include file="IncludesCommon.xml" />
   <include file="IncludesHome.xml" />
