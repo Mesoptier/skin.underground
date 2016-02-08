@@ -343,7 +343,18 @@
 
           <texture colordiffuse="Text_Secondary">icon/playing_24dp.png</texture>
 
-          <visible>$PARAM[IsPlaying]</visible>
+          <visible>$PARAM[IsPlaying] + Player.Playing</visible>
+        </control>
+
+        <control type="image">
+          <centertop>50%</centertop>
+          <centerleft>50%</centerleft>
+          <width>24</width>
+          <height>24</height>
+
+          <texture colordiffuse="Text_Secondary">icon/paused_24dp.png</texture>
+
+          <visible>$PARAM[IsPlaying] + !Player.Playing</visible>
         </control>
       </control>
 
