@@ -13,7 +13,7 @@
 
         <!-- DEBUG -->
         <control type="label">
-          <label>ID: $PARAM[Id] / $PARAM[Content] $PARAM[ParentContent] $INFO[Window(Home).Property(PreviousContent)]</label>
+          <label>ID: $PARAM[Id]</label>
           <font>Common_ItemTitle_Uppercase</font>
           <textcolor>Text_Primary</textcolor>
 
@@ -59,30 +59,30 @@
         <control type="group">
           <top>176</top>
           <left>120</left>
-          <width>592</width>
+          <width>620</width>
           <height>724</height>
 
           <visible>Container.Content(Episodes)</visible>
 
           <control type="image">
-            <height>333</height>
+            <height>350</height>
 
             <fadetime>AnimationTime_ImageFade</fadetime>
             <texture>$INFO[ListItem.Art(thumb)]</texture>
           </control>
 
           <control type="group">
-            <top>333</top>
+            <top>350</top>
 
             <control type="image">
               <texture colordiffuse="Background_Secondary" border="8" flipy="true">back-rounded-v.png</texture>
             </control>
 
             <control type="textbox">
-              <top>16</top>
+              <top>18</top>
               <bottom>24</bottom>
-              <left>24</left>
-              <right>24</right>
+              <left>32</left>
+              <right>32</right>
 
               <label>$INFO[ListItem.Plot]</label>
               <font>Common_ItemDescription_Large</font>
@@ -134,15 +134,14 @@
 
           <include name="ViewType_List_Layout">
             <param name="Condition" value="Container.Content(Episodes)" />
-            <param name="Width" value="1088" />
-            <param name="OffsetLeft" value="110" />
+            <param name="Width" value="1060" />
+            <param name="OffsetLeft" value="138" />
             <param name="Title" value="$INFO[ListItem.Title]" />
             <param name="DetailLeft" value="$VAR[ListItem_SeasonEpisode]" />
             <param name="DetailLeft_Width" value="120" />
             <param name="DetailRight" value="$VAR[ListItem_Duration]" />
             <param name="DetailRight_Width" value="120" />
           </include>
-
 
           <itemlayout width="92" height="92"></itemlayout>
           <focusedlayout width="92" height="92"></focusedlayout>

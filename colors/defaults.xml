@@ -6,6 +6,7 @@
 
   <!-- Background -->
   <color name="Background_Window">FF1A1C1F</color>
+  <color name="Background_Window_Overlay">E6101113</color>
   <color name="Background_Primary">FF373942</color>
   <color name="Background_Secondary">FF30323A</color>
   <color name="Background_Primary_Playing">FF3C4C40</color>

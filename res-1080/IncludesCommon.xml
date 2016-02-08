@@ -7,16 +7,13 @@
     </control>
 
     <control type="image">
-      <top>0</top>
-      <left>0</left>
-      <width>100%</width>
-      <height>100%</height>
-
       <texture colordiffuse="Background_Window">solid.png</texture>
+      <visible>!Player.HasVideo</visible>
+    </control>
 
-      <animation type="Conditional" condition="Player.HasVideo">
-        <effect type="Fade" start="100" end="90" />
-      </animation>
+    <control type="image">
+      <texture colordiffuse="Background_Window_Overlay">solid.png</texture>
+      <visible>Player.HasVideo</visible>
     </control>
   </include>
 
